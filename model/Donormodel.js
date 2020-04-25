@@ -64,11 +64,11 @@ const DonorSchema = mongoose.Schema({
     toObject: { virtuals: true } 
 });
 
-NGOSchema.pre('save',async (next)=> {
+DonorSchema.pre('save',async (next)=> {
     if(!this.isModified('password')) next();
     this.Password = await bcrypt.hash(this.Password,12);   // 12 is cost parameter means how cpu intensive this would be 
     this.PasswordConfirm = undefined;
     next(); 
 })
-const NGO =mongoose.model( 'NGO' , NGOSchema ); 
-module.exports = NGO;
+const Donor =mongoose.model( 'Donor' , DonorSchema ); 
+module.exports = Donor;
