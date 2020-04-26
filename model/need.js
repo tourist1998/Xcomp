@@ -1,7 +1,7 @@
 
 
 const mongoose = require('mongoose');
-
+const User = require('./usermodel.js');
 const NeedSchema = mongoose.Schema({
     total_person_served : {
         type : Number ,
@@ -18,9 +18,15 @@ const NeedSchema = mongoose.Schema({
     },
     postedBy : {
         type: mongoose.Schema.ObjectId,  
-        ref: 'NGO'
+        ref: 'User'
     }
 })
-
+NeedSchema.pre(/^find/,async function(next)  {
+    this.populate({
+        path : 'postedBy',
+        select : '-Password '
+    })
+    next(); 
+})
 const Need = mongoose.model('Need',NeedSchema);
 module.exports = Need;

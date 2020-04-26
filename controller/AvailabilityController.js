@@ -42,10 +42,17 @@ const Availablefood = async(req,res,next) => {
     }); 
 }
 
-
+const getAllAvailability = async(req,res,next) => {
+    const Available = await Availability.find();
+    res.status(200).json({
+        "Status" : "Sucess",
+        Available
+    })
+}
 
 ////////////////////////////////////////////////////MODEL///////////////////////////////////////////////////////
 router.route('/')
-    .post(protect,Availablefood);
+    .post(protect,Availablefood)
+    .get(getAllAvailability)
 
 module.exports = router;

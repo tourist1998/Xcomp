@@ -40,10 +40,17 @@ const Needfood = async(req,res,next) => {
     }); 
 }
 
-
+const getAllNeed = async(req,res,next) => {
+    const need = await Need.find();
+    res.status(200).send({
+        "Status" : "Sucess",
+        need
+    });
+}
 
 ////////////////////////////////////////////////////MODEL///////////////////////////////////////////////////////
 router.route('/')
-    .post(protect,Needfood);
+    .post(protect,Needfood)
+    .get(getAllNeed)
 
 module.exports = router;
