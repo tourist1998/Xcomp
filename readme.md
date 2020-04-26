@@ -1,4 +1,2 @@
-# Xstarvation Application
-
-
-Building  this project using modern technologies : Nodejs Mongodb mongoose express and pug and templating engine. 
+# Xcomp
+You care We care

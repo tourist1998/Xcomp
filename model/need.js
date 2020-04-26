@@ -12,10 +12,6 @@ const NeedSchema = mongoose.Schema({
         enum : ["Veg","Halal","No-Beef-Non-Veg","Anything"],
         default : "Anything"
     },
-    location : {
-        type : String,
-        Required : [true,'location is must']
-    },
     pickuptime : {
         type : Date,
         default : Date.now()
