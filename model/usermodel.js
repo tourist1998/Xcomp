@@ -61,7 +61,7 @@ const UserSchema = mongoose.Schema({
     toObject: { virtuals: true } 
 });
 UserSchema.pre(/^find/,async function(next) {
-    console.log(this.Name);
+    
     next();
 })
 UserSchema.pre('save',async function (next) {

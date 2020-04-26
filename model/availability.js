@@ -24,5 +24,12 @@ const AvailabilitySchema = mongoose.Schema({
     }
 }) 
 
+AvailabilitySchema.pre('save',async function(next) {
+    this.populate({
+        path : 'postedBy'
+    })
+    next();
+});
+
 const Availability = mongoose.model('Availability',AvailabilitySchema);
 module.exports = Availability;

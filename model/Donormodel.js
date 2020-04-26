@@ -19,8 +19,11 @@ const DonorSchema = mongoose.Schema({
     toJSON: { virtuals: true },  // We wanted to show up this virtual thing whenever there is an object
     toObject: { virtuals: true } 
 });
-DonorSchema.pre(/^find/,async(next) => {
-    console.log(this.Name);
+
+DonorSchema.pre(/^find/,async function(next)  {
+    const user = User.find({Details: this.Details});
+    console.log(user);
+    next();
 })
 
 const Donor =mongoose.model( 'Donor' , DonorSchema ); 

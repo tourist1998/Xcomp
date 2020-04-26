@@ -1,0 +1,94 @@
+doctype html
+html
+  head
+    title  NGO Registration Form
+    style.
+      body{
+      background: url(poverty-child-ap.jpg);
+      background-size: cover;
+      font-family: sans-serif;
+      }
+      .wrap{
+      max-width: 350px;
+      border-radius: 20px;
+      margin:auto;
+      background: rgba(0,0,0,0.8);
+      box-sizing: border-box;
+      padding: 40px;
+      color:#fff;
+      margin-top: 100px;
+      }
+      input[type=text],input[type=password]{
+      width:100%;
+      box-sizing: border-box;
+      padding: 12px 5px;
+      background: rgba(0,0,0,0.10);
+      outline: none;
+      border: none;
+      border-bottom: 1px dotted #fff;
+      color: #fff;
+      border-radius: 5px;
+      margin: 5px;
+      font-weight: bold;
+      }
+      input[type=submit]{
+      width:100%;
+      box-sizing: border-box;
+      padding: 10px 0;
+      margin-top: 30px;
+      outline: none;
+      border: none;
+      background: #60adde;
+      border-radius: 20px;
+      font-size: 20px;
+      color: #fff;
+      border-bottom: 1px dotted #fff;
+      color: #fff;
+      border-radius: 10px;
+      margin: 5px;
+      font-weight: bold;
+      }
+  body
+    .wrap
+      h3  Sign Up as a Food Donor
+      form
+        input.input(type='text', placeholder='Username', required='')
+        input.input(type='text', placeholder='Password', required='')
+        input.input(type='text', placeholder="NGO's Name", required='')
+        input.input(type='text', placeholder='Phone Number', required='')
+        input.input(type='text', placeholder="Director's Name", required='')
+        input.input(type='text', placeholder="Director's Phone Number", required='')
+        input.input(type='text', placeholder='Email ID', required='')
+        input.input(type='text', placeholder='Address', required='')
+        p(style='color:white; font-family: sans-serif') Type of Food
+        select#food(name='food', style='background: transparent; color: white')
+          option(value='Veg', style='background: transparent; color: darkslategray') Veg Food
+          option(value='Haalal', style='background: transparent; color:darkslategray') Halal Food
+          option(value='Non', style='background: transparent; color: darkslategray') Non-Beef Non Veg Food
+          option(value='any', style='background: transparent; color:darkslategray') Anything
+        p(style='color:white; font-family: sans-serif') Area of Service
+        select#area(name='area', style='background: transparent; color: white')
+          option(value='ulta', style='background: transparent; color: darkslategray') Ultadanga
+          option(value='kgp', style='background: transparent; color: darkslategray') Kharagpur
+          option(value='bel', style='background: transparent; color: darkslategray') Belgharia
+          option(value='how', style='background: transparent; color: darkslategray') Howrah
+          option(value='garia', style='background: transparent; color: darkslategray') Garia
+          option(value='dhak', style='background: transparent; color: darkslategray') Dhakuria
+          option(value='diam', style='background: transparent; color: darkslategray') Diamond Harbour
+          option(value='khardah', style='background: transparent; color: darkslategray') Khardah
+          option(value='bkp', style='background: transparent; color: darkslategray') Barrackpore
+          option(value='sdp', style='background: transparent; color: darkslategray') Sodepur
+          option(value='bars', style='background: transparent; color: darkslategray') Barasat
+          option(value='rana', style='background: transparent; color: darkslategray') Ranaghat
+          option(value='sera', style='background: transparent; color: darkslategray') Serampore
+          option(value='chan', style='background: transparent; color: darkslategray') Chandannagar
+          option(value='kris', style='background: transparent; color: darkslategray') Krishnanagar
+          option(value='brn', style='background: transparent; color: darkslategray') Baranagar
+          option(value='rgj', style='background: transparent; color: darkslategray') Raiganj
+          option(value='newt', style='background: transparent; color: darkslategray') New Town
+          option(value='balu', style='background: transparent; color: darkslategray') Balurghat
+          option(value='hld', style='background: transparent; color: darkslategray') Haldia
+          option(value='kln', style='background: transparent; color: darkslategray') Kalyani
+        br
+        br
+        input.input(type='submit', value='Submit')
