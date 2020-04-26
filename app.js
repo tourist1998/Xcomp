@@ -12,6 +12,7 @@ app.use(cookieparser());
 
 const UserController = require('./controller/UserController.js');
 const NeedController = require('./controller/NeedController.js');
+const AvailabilityController = require('./controller/AvailabilityController.js');
 
 // Database connection
 mongoose.connect("mongodb://localhost:27017/xstarvation",{
@@ -26,7 +27,7 @@ mongoose.connect("mongodb://localhost:27017/xstarvation",{
 
 app.use('/api/v1/User',UserController);
 app.use('/api/v1/Need',NeedController);
-
+app.use('/api/v1/Availability',AvailabilityController);
 
 
 

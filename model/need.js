@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const NeedSchema = mongoose.Schema({
     total_person_served : {
-        type : Integer ,
+        type : Number ,
         Required : [true,'Total person to be served must be in list']
     },
     type_of_food : {

@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const Need = require('./../model/need.js');
+const Availability = require('./../model/availability.js');
 const User = require('./../model/usermodel.js');
+
 
 const protect = async(req,res,next) => {
     let token;
@@ -31,12 +32,13 @@ const protect = async(req,res,next) => {
     return next();
 
 }
-const Needfood = async(req,res,next) => {
-    const need = await Need.create(req.body); 
-    need.save();
+
+const Availablefood = async(req,res,next) => {
+    const available = await Availability.create(req.body); 
+    available.save();
     res.status(200).json({
         "Status" : "Sucess",
-        need
+        available
     }); 
 }
 
@@ -44,6 +46,6 @@ const Needfood = async(req,res,next) => {
 
 ////////////////////////////////////////////////////MODEL///////////////////////////////////////////////////////
 router.route('/')
-    .post(protect,Needfood);
+    .post(protect,Availablefood);
 
 module.exports = router;

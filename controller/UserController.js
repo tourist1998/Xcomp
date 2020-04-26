@@ -70,7 +70,7 @@ const login = async(req,res,next) => {
     if (!user || !(await correctPassword(password, user.Password))) {
         return next('Incorrect email or password');
     }
-    const token = jwt.sign({id:user._id},"Try your luck baby",{
+    const token = jwt.sign({id:user._id},'This should be tough to guess',{
         expiresIn: "60d"
     });
     res.cookie('jwt',token,{
