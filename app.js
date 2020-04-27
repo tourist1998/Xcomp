@@ -27,12 +27,18 @@ mongoose.connect("mongodb://localhost:27017/xstarvation",{
   .catch((err)=> console.log(`error ${err}`));
 
 
+// Test middleware 
+app.use((req,res,next) => {
+    console.log(req.cookies);
+    next();
+});
 
 
 app.use('/api/v1/User',UserController);
 app.use('/api/v1/Need',NeedController);
 app.use('/api/v1/Availability',AvailabilityController);
 app.use('/',ViewController);
+
 
 
 app.listen(3000,() => {

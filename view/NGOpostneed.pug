@@ -1,0 +1,109 @@
+doctype html
+html
+  head
+    style.
+      body{
+      background: url(street.jpg);
+      background-size: cover;
+      font-family: sans-serif;
+      }
+      .wrap{
+      max-width: 700px;
+      border-radius: 20px;
+      margin:auto;
+      background: rgba(0,0,0,0.8);
+      box-sizing: border-box;
+      padding: 40px;
+      color:#fff;
+      margin-top: 100px;
+      }
+      input[type=submit]{
+      width:50%;
+      box-sizing: border-box;
+      padding: 10px 0;
+      margin-top: 30px;
+      outline: none;
+      border: none;
+      background: #60adde;
+      border-radius: 20px;
+      font-size: 20px;
+      color: #fff;
+      border-bottom: 1px dotted #fff;
+      color: #fff;
+      border-radius: 10px;
+      margin: 5px;
+      font-weight: bold;
+      }
+  body
+    .wrap
+      h3(style='text-align: center')  POST FOOD NEED
+      form
+        label(for='area', style='color:white; font-family: sans-serif') LOCATION: 
+        select#area(name='area', style='background: transparent; color: white')
+          option(value='ulta', style='background: transparent; color: darkslategray') Ultadanga
+          option(value='kgp', style='background: transparent; color: darkslategray') Kharagpur
+          option(value='bel', style='background: transparent; color: darkslategray') Belgharia
+          option(value='how', style='background: transparent; color: darkslategray') Howrah
+          option(value='garia', style='background: transparent; color: darkslategray') Garia
+          option(value='dhak', style='background: transparent; color: darkslategray') Dhakuria
+          option(value='diam', style='background: transparent; color: darkslategray') Diamond Harbour
+          option(value='khardah', style='background: transparent; color: darkslategray') Khardah
+          option(value='bkp', style='background: transparent; color: darkslategray') Barrackpore
+          option(value='sdp', style='background: transparent; color: darkslategray') Sodepur
+          option(value='bars', style='background: transparent; color: darkslategray') Barasat
+          option(value='rana', style='background: transparent; color: darkslategray') Ranaghat
+          option(value='sera', style='background: transparent; color: darkslategray') Serampore
+          option(value='chan', style='background: transparent; color: darkslategray') Chandannagar
+          option(value='kris', style='background: transparent; color: darkslategray') Krishnanagar
+          option(value='brn', style='background: transparent; color: darkslategray') Baranagar
+          option(value='rgj', style='background: transparent; color: darkslategray') Raiganj
+          option(value='newt', style='background: transparent; color: darkslategray') New Town
+          option(value='balu', style='background: transparent; color: darkslategray') Balurghat
+          option(value='hld', style='background: transparent; color: darkslategray') Haldia
+          option(value='kln', style='background: transparent; color: darkslategray') Kalyani
+        br
+        br
+        label(for='pick', style='color:white; font-family: sans-serif') PICKUP TIME: 
+        input#apt(type='time', name='apt', min='09:00', max='22:00', required='')
+        br
+        br
+        label(for='food', style='color:white; font-family: sans-serif') TYPE OF FOOD:
+        select#food(name='food', style='background: transparent; color: white')
+          option(value='Veg', style='background: transparent; color: darkslategray') Veg Food
+          option(value='Haalal', style='background: transparent; color:darkslategray') Halal Food
+          option(value='Non', style='background: transparent; color: darkslategray') Non-Beef Non Veg Food
+          option(value='any', style='background: transparent; color:darkslategray') Anything
+        br
+        br
+        label(for='num', style='color:white; font-family: sans-serif') NUMBER OF PEOPLE YOU NEED TO FEED: 
+        input.input(type='text')
+        br
+        br
+        label(for='days', style='color:white; font-family: sans-serif') DAYS YOU SERVE: 
+        br
+        input#mon(type='checkbox', value='Mon')
+        label(for='mon')  Monday
+        br
+        input#tue(type='checkbox', value='tue')
+        label(for='tue')  Tuesday
+        br
+        input#wed(type='checkbox', value='wed')
+        label(for='wed')  Wednesday
+        br
+        input#thu(type='checkbox', value='thu')
+        label(for='thu')  Thursday
+        br
+        input#fri(type='checkbox', value='fri')
+        label(for='fri')  Friday
+        br
+        input#sat(type='checkbox', value='sat')
+        label(for='sat')  Saturday
+        br
+        input#sun(type='checkbox', value='sun')
+        label(for='sun')  Sunday
+        br
+        br
+        input.input(type='submit', value='ADD ANOTHER LOCATION')
+        br
+        br
+        input.input(type='submit', value='SUBMIT')

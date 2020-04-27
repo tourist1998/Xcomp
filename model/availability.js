@@ -20,7 +20,7 @@ const AvailabilitySchema = mongoose.Schema({
     },
     postedBy : {
         type: mongoose.Schema.ObjectId,  
-        ref: 'Donor'
+        ref: 'User'
     }
 }) 
 

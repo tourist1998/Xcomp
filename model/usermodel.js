@@ -7,7 +7,8 @@ const UserSchema = mongoose.Schema({
     },
     UserName : {
         type : String,
-        required: [true,`A user must have a user name`]
+        required: [true,`A user must have a user name`],
+        unique : [true,'This userName already exist']
     },
     Email: {
         type: String,
@@ -47,6 +48,19 @@ const UserSchema = mongoose.Schema({
     Type : {
         type : String,
         enum : ['Donor','NGO']
+    },
+    TypeofFood : {
+        type : String,
+        default : "Anything"
+    },
+    AreaofService : {
+        type : String
+    },
+    DirectorName : {
+        type : String
+    },
+    DirectorPhone : {
+        type : String
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
