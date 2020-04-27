@@ -2,7 +2,7 @@
 const express = require('express');
 const app =  express();
 const router = express.Router();
-
+const User = require('./../model/usermodel');
 
 const Firstpage = async (req,res,next) => {
     res.status(200).render('overview');
@@ -55,7 +55,14 @@ const isLoggedIn = async(req,res,next) => {
     }
     res.locals.user = freshUser; // This give access to freshuser to all 
     next();
+}
 
+const example = async (req,res,next) => {
+    const users = await User.find();
+    console.log(users);
+    res.status(200).render('example',{
+        users
+    })
 }
 ///////////////////////////////////////////////////////////////MODEL////////////////////////////////////////////////////////
 
@@ -76,4 +83,6 @@ router.route('/PostAvail')
     .get(PostAvail);
 router.route('/NGOpostneed')
     .get(NGOpostneed);
+router.route('/exm')
+    .get(example)
 module.exports = router;

@@ -78,10 +78,21 @@ const login = async(req,res,next) => {
     }
 }
 
+const logout = async (req,res,next) => {
+    res.cookie('jwt','Logging out',{
+        expires : new Date(Date.now() + 10*1000),
+        httpOnly : true 
+    });
+    res.status(200).json({
+        "Status" : "Success"
+    });
+}
 
 ///////////////////////////////////////////////////////////////////////////MODEL//////////////////////////////////////////////////////////// 
 router.route('/Signup')
     .post(Signup);
 router.route('/login')
     .post(login);
+router.route('/logout')
+    .get(logout);
 module.exports = router; 

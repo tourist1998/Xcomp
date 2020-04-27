@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    style.
+      body{
+      background: url(street.jpg);
+      background-size: cover;
+      font-family: sans-serif;
+      }
+      .wrap{
+      max-width: 700px;
+      border-radius: 20px;
+      margin:auto;
+      background: rgba(0,0,0,0.8);
+      box-sizing: border-box;
+      padding: 40px;
+      color:#fff;
+      margin-top: 100px;
+      }
+      input[type=submit]{
+      width:50%;
+      box-sizing: border-box;
+      padding: 10px 0;
+      margin-top: 30px;
+      outline: none;
+      border: none;
+      background: #60adde;
+      border-radius: 20px;
+      font-size: 20px;
+      color: #fff;
+      border-bottom: 1px dotted #fff;
+      color: #fff;
+      border-radius: 10px;
+      margin: 5px;
+      font-weight: bold;
+      }
+  body
+    table(style='width:100%')
+      tbody
+        tr
+          th Name 
+          th Email Id 
+          th Type of Food 
+        each  user in users
+          tr 
+            th  #{user.Name}
+            th  #{user.Email}
+            th  #{user.TypeofFood} 
+        

@@ -14,15 +14,18 @@ const login = async function(UserName,Password) {
             alert('Logged In');
             window.setTimeout(()=> {
                 if(res.data.user.Type === 'Donor')
-                location.assign('/PostNeed')
-                else 
                 location.assign('/PostAvail')
+                else 
+                location.assign('/PostNeed')
             },1500);
         }
     }
     catch(err) {
         console.log(err.response.data);
         alert('There is some error');
+        window.setTimeout(()=> {
+            location.assign('/login')
+        },1500);
     }
 }
 
