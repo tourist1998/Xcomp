@@ -38,7 +38,12 @@ app.use('/api/v1/User',UserController);
 app.use('/api/v1/Need',NeedController);
 app.use('/api/v1/Availability',AvailabilityController);
 app.use('/',ViewController);
-
+app.all('*',(req,res,next) => {
+  res.status(404).json({
+     status : 'fail',
+     message : ' Not able to find this link'
+  });
+})
 
 
 app.listen(3000,() => {

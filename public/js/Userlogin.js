@@ -8,8 +8,8 @@ const login = async function(UserName,Password) {
                 UserName,Password
             }
         })
-        console.log(res);
-        console.log(res.data.user.Type);
+        // console.log(res);
+        // console.log(res.data.user.Type);
         if(res.data.Status === 'Success')  {
             alert('Logged In');
             window.setTimeout(()=> {

@@ -13,8 +13,15 @@ const NeedSchema = mongoose.Schema({
         default : "Anything"
     },
     pickuptime : {
-        type : Date,
-        default : Date.now()
+        type : String,
+        Required : [true,'Pickup time must be submitted']
+    },
+    location : {
+        type : String 
+    },
+    Days_of_serve : {
+        type : [String],
+        enum : ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
     },
     postedBy : {
         type: mongoose.Schema.ObjectId,  

@@ -4,8 +4,6 @@ const bcrypt = require('bcryptjs');
 const jwt= require('jsonwebtoken');
 const router = express.Router();
 const User  = require('../model/usermodel.js');
-const Donor = require('../model/Donormodel.js');
-const NGO = require('../model/NGOmodel.js');
 
 const Signup = async (req,res,next) => {
     try {
@@ -25,12 +23,12 @@ const Signup = async (req,res,next) => {
             "DirectorPhone" : req.body.DirectorPhone
         }
         const users = await User.create(user); 
-        console.log(users);
+        // console.log(users);
         var token = await jwt.sign({id:users._id},'This should be tough to guess',{
             expiresIn: "60d"
         })    
         res.cookie('jwt',token,{
-            expires : new Date(Date.now() + 90*24*60*60*1000)   // token should be sent through cookies for safety purpose 
+            expires : new Date(Date.now() + 90*24*60*60*1000) 
         })
         res.status(200).send({
             "Status" : "Success",
@@ -62,9 +60,7 @@ const login = async(req,res,next) => {
             expiresIn: "60d"
         });
         res.cookie('jwt',token,{
-            expires : new Date(Date.now() + 90*24*60*60*1000),
-            secure : true,
-            httpOnly : true
+            expires : new Date(Date.now() + 90*24*60*60*1000)
         });
         res.send({
             "Status" : "Success",

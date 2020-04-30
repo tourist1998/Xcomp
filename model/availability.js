@@ -15,7 +15,7 @@ const AvailabilitySchema = mongoose.Schema({
         Required : [true,'location is must']
     },
     pickuptime : {
-        type : Date,
+        type : String, 
         default : Date.now()
     },
     postedBy : {

@@ -1,6 +1,7 @@
 
 const express = require('express');
 const app =  express();
+const jwt= require('jsonwebtoken');
 const router = express.Router();
 const User = require('./../model/usermodel');
 
@@ -40,7 +41,7 @@ const isLoggedIn = async(req,res,next) => {
     }
     // console.log(token);
     if(!token) { 
-        return next('fail');
+        return next('You need to login to get access to this page');
     }
     const decoded = await jwt.verify(token,"This should be tough to guess");
     // console.log(decoded); 
@@ -64,6 +65,9 @@ const example = async (req,res,next) => {
         users
     })
 }
+const postFoodAvail = async (req,res,next) => {
+    res.status(200).render('postFoodAvail');
+}
 ///////////////////////////////////////////////////////////////MODEL////////////////////////////////////////////////////////
 
 
@@ -78,11 +82,13 @@ router.route('/ngosignup')
 router.route('/Donorsignup')
     .get(Donorsignup);
 router.route('/PostNeed')
-    .get(PostNeed);
+    .get(isLoggedIn,PostNeed);
 router.route('/PostAvail')
-    .get(PostAvail);
+    .get(isLoggedIn,PostAvail);
 router.route('/NGOpostneed')
-    .get(NGOpostneed);
+    .get(isLoggedIn,NGOpostneed);
 router.route('/exm')
-    .get(example)
+    .get(isLoggedIn,example)
+router.route('/postFoodAvail')
+    .get(isLoggedIn,postFoodAvail);
 module.exports = router;

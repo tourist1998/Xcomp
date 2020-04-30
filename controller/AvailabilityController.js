@@ -37,7 +37,7 @@ const Availablefood = async(req,res,next) => {
     const available = await Availability.create(req.body); 
     available.save();
     res.status(200).json({
-        "Status" : "Sucess",
+        "Status" : "Success",
         available
     }); 
 }

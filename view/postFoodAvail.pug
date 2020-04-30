@@ -36,8 +36,12 @@ html
       }
   body
     .wrap
-      h3(style='text-align: center')  POST FOOD NEED
-      form#Food
+      h3(style='text-align: center')  POST FOOD AVAILABILITY
+      form#Avail
+        label(for='num', style='color:white; font-family: sans-serif') NUMBER OF PEOPLE YOU NEED TO FEED: 
+        input.input#NumofPeople(type='text')
+        br
+        br
         label(for='area', style='color:white; font-family: sans-serif') LOCATION: 
         select#area(name='area', style='background: transparent; color: white')
           option(value='ulta', style='background: transparent; color: darkslategray') Ultadanga
@@ -63,10 +67,6 @@ html
           option(value='kln', style='background: transparent; color: darkslategray') Kalyani
         br
         br
-        label(for='pick', style='color:white; font-family: sans-serif') PICKUP TIME: 
-        input#apt(type='time', name='apt', min='09:00', max='22:00', required='')
-        br
-        br
         label(for='food', style='color:white; font-family: sans-serif') TYPE OF FOOD:
         select#food(name='food', style='background: transparent; color: white')
           option(value='Veg', style='background: transparent; color: darkslategray') Veg Food
@@ -75,34 +75,12 @@ html
           option(value='Anything', style='background: transparent; color:darkslategray') Anything
         br
         br
-        label(for='num', style='color:white; font-family: sans-serif') NUMBER OF PEOPLE YOU NEED TO FEED: 
-        input.input(type='text' , id ='NumofPeople')
+        label(for='pick', style='color:white; font-family: sans-serif') PICKUP TIME: 
+        input#apt(type='time', name='apt', min='09:00', max='22:00', required='')
         br
         br
-        label(for='days', style='color:white; font-family: sans-serif') DAYS YOU SERVE: 
-        br
-        input#mon(type='checkbox', value='Monday')
-        label(for='mon')  Monday
-        br
-        input#tue(type='checkbox', value='Tuesday')
-        label(for='tue')  Tuesday
-        br
-        input#wed(type='checkbox', value='Wednesday')
-        label(for='wed')  Wednesday
-        br
-        input#thu(type='checkbox', value='Thursday')
-        label(for='thu')  Thursday
-        br
-        input#fri(type='checkbox', value='Friday')
-        label(for='fri')  Friday
-        br
-        input#sat(type='checkbox', value='Saturday')
-        label(for='sat')  Saturday
-        br
-        input#sun(type='checkbox', value='Sunday')
-        label(for='sun')  Sunday
         br
         br
-        input.input(type='submit', value='SUBMIT', href='/PostNeed')
+        a.input.input(type='submit', value='SUBMIT' , href='/PostAvail')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
-    script(src='/js/postFoodNeed.js')
+    script(src='/js/postFoodAvail.js')

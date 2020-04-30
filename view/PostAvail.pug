@@ -48,8 +48,10 @@ html
       }
   body#Avail
     br
-    a.input.btn(type='button', value='/postfood', href='/NGOpostneed') Post Food Availability
+    a.input.btn(type='button', value='/postfood', href='/postFoodAvail' , id ='postfood') Post Food Availability
     br
-    a.input.btn2(type='button', value='/View PickUp list' , href='/ViewPickupList') View PickUp List
+    a.input.btn2(type='button', value='/View PickUp list' , href='/ViewPickupList' , id ='viewPickupList') View PickUp List
     br
-    a.input.btn3(type='button', href='/Logout') Log Out
+    a.input.btn3(type='button', href='/Logout', id ='logout') Log Out
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+    script(src='/js/PostAvail.js')
