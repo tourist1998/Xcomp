@@ -1,0 +1,154 @@
+doctype html
+html
+  head
+    style.
+      body
+      {
+      background-image: url('poverty.jpg');
+      background-size: cover;
+      }
+      table, th, td {
+      width:80%;
+      margin:auto;
+      border:1px solid white;
+      border-collapse:collapse;
+      text-align:center;
+      font-size:20px;
+      table-layout:fixed;
+      background:pink;
+      opacity:0.5;
+      color:black;
+      }
+      th, td {
+      padding:10px;
+      opacity:0.9;
+      }
+  body
+    h1(align='center')
+      | Location ULTADANGA you need to feed 
+      input(type='text', maxlength='4', size='4')
+      |  more people
+    table(align='center', cellpading='10', cellspacing='10', border='1px')
+      tbody
+        tr
+          td(align='center') Donor
+          td(align='center') Address
+          td(align='center') Headcount
+          td(align='center') Select
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+    h1(align='center')
+      | Location SECTOR V you need to feed 
+      input(type='text', maxlength='4', size='4')
+      |  more people
+    table(align='center', cellpading='10', cellspacing='10', border='1px')
+      tbody
+        tr
+          td(align='center') Donor
+          td(align='center') Address
+          td(align='center') Headcount
+          td(align='center') Select
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+        tr
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='text')
+          td
+            input(type='button', onclick='decrementValue()', value='↓')
+            input#number(type='number')
+            input(type='button', onclick='incrementValue()', value='↑')
+    input(type='button', onclick='decrementValue()', value='↓')
+    input#number(type='number')
+    input(type='button', onclick='incrementValue()', value='↑')
+    script.
+      function incrementValue()
+      {
+      var value = parseInt(document.getElementById('number').value, 10);
+      value = isNaN(value) ? 0 : value;
+      value++;
+      document.getElementById('number').value = value;
+      }
+      function decrementValue()
+      {
+      var value = parseInt(document.getElementById('number').value, 10);
+      value = isNaN(value) ? 0 : value;
+      value--;
+      document.getElementById('number').value = value;
+      }

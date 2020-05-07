@@ -4,6 +4,8 @@ const app =  express();
 const jwt= require('jsonwebtoken');
 const router = express.Router();
 const User = require('./../model/usermodel');
+const Need = require('./../model/need');
+const Available = require('./../model/availability'); 
 
 const Firstpage = async (req,res,next) => {
     res.status(200).render('overview');
@@ -33,6 +35,21 @@ const PostAvail = async (req,res,next) => {
 
 const NGOpostneed = async (req,res,next) => {
     res.status(201).render('NGOpostneed');
+}
+
+const NGOlist = async (req,res,next) => {
+    const USER = await Need.find();
+    console.log(USER);
+    res.status(201).render('NGOlist',{
+        USER
+    });
+   // res.send('Hi');
+}
+const ViewPickUpList = async (req,res,next) => {
+    const list = await Available.find();
+    res.status(201).render('pickuplist',{
+        list
+    });
 }
 const isLoggedIn = async(req,res,next) => {
     let token;
@@ -68,6 +85,10 @@ const example = async (req,res,next) => {
 const postFoodAvail = async (req,res,next) => {
     res.status(200).render('postFoodAvail');
 }
+
+const status = async (req,res,next) => {
+    res.status(201).render('status');
+}
 ///////////////////////////////////////////////////////////////MODEL////////////////////////////////////////////////////////
 
 
@@ -91,4 +112,10 @@ router.route('/exm')
     .get(isLoggedIn,example)
 router.route('/postFoodAvail')
     .get(isLoggedIn,postFoodAvail);
+router.route('/ViewPickUpList')
+    .get(isLoggedIn,ViewPickUpList);
+router.route('/NGOlist')
+    .get(isLoggedIn,NGOlist);
+router.route('/status')
+    .get(isLoggedIn,status);
 module.exports = router;

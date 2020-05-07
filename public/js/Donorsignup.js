@@ -17,7 +17,7 @@ const signup = async (Name,UserName,Email,Password,PasswordConfirm,Address,Type,
         if(res.data.Status === 'Success')  {
             alert('Created account successfully');
             window.setTimeout(()=> {
-                location.assign('/PostNeed')
+                location.assign('/PostAvail')
             },1000);
         }
         console.log(res);

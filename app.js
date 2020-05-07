@@ -14,10 +14,11 @@ app.use(express.static(path.join(__dirname,'public')));
 app.set('view engine','pug');
 app.set('views',path.join(__dirname,'view')); 
 
-const UserController = require('./controller/UserController.js');
-const NeedController = require('./controller/NeedController.js');
-const AvailabilityController = require('./controller/AvailabilityController.js');
+const UserRouter = require('./Router/user.js');
+const NeedRouter = require('./Router/Need.js');
+const AvailabilityRouter = require('./Router/Availability.js');
 const ViewController = require('./controller/ViewController.js');
+const Allocate = require('./Router/Allocate');
 // Database connection
 mongoose.connect("mongodb://localhost:27017/xstarvation",{
   useNewUrlParser: true,
@@ -29,15 +30,16 @@ mongoose.connect("mongodb://localhost:27017/xstarvation",{
 
 // Test middleware 
 app.use((req,res,next) => {
-    console.log(req.cookies);
+   // console.log(req.cookies);
     next();
 });
 
-
-app.use('/api/v1/User',UserController);
-app.use('/api/v1/Need',NeedController);
-app.use('/api/v1/Availability',AvailabilityController);
+app.use('/api/v1/User',UserRouter);
+app.use('/api/v1/Need',NeedRouter);
+app.use('/api/v1/Availability',AvailabilityRouter);
 app.use('/',ViewController);
+app.use('/api/v1/Allocate',Allocate); 
+
 app.all('*',(req,res,next) => {
   res.status(404).json({
      status : 'fail',

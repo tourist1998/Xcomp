@@ -81,6 +81,8 @@ html
         br
         br
         br
-        a.input.input(type='submit', value='SUBMIT' , href='/PostAvail')
+        input.input(type='submit', value='SUBMIT' , href='/PostAvail')
+    form
+      input.button(type='button', value='Go back!', onclick='history.back()', style='float: right;')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
     script(src='/js/postFoodAvail.js')

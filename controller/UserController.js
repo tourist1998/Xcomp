@@ -1,13 +1,9 @@
-const express = require('express');
-const app = express();
 const bcrypt = require('bcryptjs');
 const jwt= require('jsonwebtoken');
-const router = express.Router();
 const User  = require('../model/usermodel.js');
 
-const Signup = async (req,res,next) => {
+exports.Signup = async (req,res,next) => {
     try {
-        const data = req.body;
         const user = {
             "Name" : req.body.Name,
             "Email" : req.body.Email,
@@ -45,14 +41,16 @@ const Signup = async (req,res,next) => {
 const correctPassword = (password1,password2) => {
     return bcrypt.compare(password1,password2);
 }
-const login = async(req,res,next) => {
+exports.login = async(req,res,next) => {
     try {
         const UserId = req.body.UserName,password = req.body.Password;
+        console.log(password);
+
         if(!UserId || !password) {
             next('We need userId and Password to do our work');
         }
         const user = await User.findOne({ "UserName" : UserId }).select('+Password');
-
+        console.log(user);
         if (!user || !(await correctPassword(password, user.Password))) {
             return next('Incorrect email or password');
         }
@@ -74,7 +72,7 @@ const login = async(req,res,next) => {
     }
 }
 
-const logout = async (req,res,next) => {
+exports.logout = async (req,res,next) => {
     res.cookie('jwt','Logging out',{
         expires : new Date(Date.now() + 10*1000),
         httpOnly : true 
@@ -84,11 +82,29 @@ const logout = async (req,res,next) => {
     });
 }
 
-///////////////////////////////////////////////////////////////////////////MODEL//////////////////////////////////////////////////////////// 
-router.route('/Signup')
-    .post(Signup);
-router.route('/login')
-    .post(login);
-router.route('/logout')
-    .get(logout);
-module.exports = router; 
+exports.protect = async(req,res,next) => {
+    let token;
+    if ( req.headers.authorization && req.headers.authorization.startsWith('Bearer') ) {
+        token = req.headers.authorization.split(' ')[1]; 
+    }
+    else if(req.cookies.jwt) {
+        token = req.cookies.jwt;   
+    }
+    // console.log(token);
+    if(!token) { 
+        return next('fail');
+    }
+    const decoded = await jwt.verify(token,"This should be tough to guess");
+    // console.log(decoded); 
+    if(!req.body.postedBy) {
+        req.body.postedBy = decoded.id; 
+    } 
+    // Check if user still exist 
+    const freshUser = await User.findById(decoded.id);
+
+    if(!freshUser) {
+        return next('There is some error in protect file');
+    }
+    return next();
+
+}

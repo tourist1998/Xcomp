@@ -25,6 +25,7 @@ const logout = async function() {
 }
 
 
+
 document.querySelector('#Logout').addEventListener('click',function(e) {
     e.preventDefault();
     logout();
