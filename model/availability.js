@@ -31,5 +31,9 @@ AvailabilitySchema.pre('save',async function(next) {
     next();
 });
 
+AvailabilitySchema.pre('find',async function(next) {
+    this.find({total_person_served :{$gt : 0}});  // Only showing person who have to serve atleast 1 person.
+    next();
+})
 const Availability = mongoose.model('Availability',AvailabilitySchema);
 module.exports = Availability;

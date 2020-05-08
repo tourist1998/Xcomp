@@ -25,6 +25,7 @@ const logout = async function() {
         },1500);
     }
 }
+
 document.querySelector('#logout').addEventListener('click',function(e) {
     e.preventDefault();
     logout();
