@@ -2,7 +2,11 @@ doctype html
 html
   head
     style.
-      /* The container */
+      body{
+      background: url(poverty-child-ap.jpg);
+      background-size: cover;
+      font-family: sans-serif;
+      }
       .container {
       display: block;
       position: relative;
@@ -97,10 +101,12 @@ html
       opacity:0.6;
       }
   body
-    h1(align='center') Location 1
+    h1(align='center') Select to Remove
     table(align='center', cellpading='10', cellspacing='10', border='1px')
-      tbody
+      tbody#status 
         tr
+          td(align='center')
+            h2 Availability Id
           td(align='center')
             h2 Donor Name
           td(align='center')
@@ -108,83 +114,21 @@ html
           td(align='center')
             h2 Contact Number
           td(align='center')
+            h2 Count
+          td(align='center') 
             h2 Select
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-    h1(align='center') Location 2
-    table(align='center', cellpading='10', cellspacing='10', border='1px')
-      tbody
-        tr
-          td(align='center')
-            h2 Donor Name
-          td(align='center')
-            h2 Address
-          td(align='center')
-            h2 Contact Number
-          td(align='center')
-            h2 Select
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-        tr
-          td
-          td
-          td
-          td(align='center')
-            label.container
-              input(type='checkbox', checked='checked')
-              span.checkmark
-    form
-      input.button(type='button', value='Go back!', onclick='history.back()', style='float: right;')
-    script.
+        each val in all
+          tr
+            td(align='center') #{val._id}
+            td(align='center') #{val.alloted.Name}
+            td(align='center') #{val.alloted.Address}
+            td(align='center') #{val.alloted.Phone}
+            td(align='center') #{val.total_person_served}
+            td(align='center') 
+              input.input(type='checkbox')
+    input.input(type='submit', value='SUBMIT', id = 'submit')
+    script(src='/js/Status.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+
+
+        

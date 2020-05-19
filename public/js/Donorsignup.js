@@ -1,8 +1,5 @@
 
 
-
-
-
 const signup = async (Name,UserName,Email,Password,PasswordConfirm,Address,Type,TypeofFood,AreaofService,Phone) => {
     
     try {

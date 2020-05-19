@@ -1,7 +1,6 @@
 
 
 
-
 const logout = async function() {
     try {
         const res = await axios({

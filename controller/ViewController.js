@@ -6,7 +6,9 @@ const router = express.Router();
 const User = require('./../model/usermodel');
 const Need = require('./../model/need');
 const Available = require('./../model/availability'); 
-
+const AllocationMGR = require('./AllocationMGR');
+const User1 = require('./UserController');
+const allocate = require('./../model/allocate.js');
 const Firstpage = async (req,res,next) => {
     res.status(200).render('overview');
 }
@@ -56,12 +58,12 @@ const isLoggedIn = async(req,res,next) => {
     if(req.cookies.jwt) {
         token = req.cookies.jwt;   
     }
-    // console.log(token);
+    console.log(token);
     if(!token) { 
         return next('You need to login to get access to this page');
     }
-    const decoded = await jwt.verify(token,"This should be tough to guess");
-    // console.log(decoded); 
+    const decoded = await jwt.verify(token,process.env.key);
+    console.log(decoded); 
     if(!req.body.postedBy) {
         req.body.postedBy = decoded.id; 
     } 
@@ -87,7 +89,11 @@ const postFoodAvail = async (req,res,next) => {
 }
 
 const status = async (req,res,next) => {
-    res.status(201).render('status');
+    const all = await allocate.find({alloted : req.body.postedBy});
+    console.log(all);
+    res.status(201).render('status',{
+        all
+    });
 }
 ///////////////////////////////////////////////////////////////MODEL////////////////////////////////////////////////////////
 
@@ -107,7 +113,7 @@ router.route('/PostNeed')
 router.route('/PostAvail')
     .get(isLoggedIn,PostAvail);
 router.route('/NGOpostneed')
-    .get(isLoggedIn,NGOpostneed);
+    .get(NGOpostneed);
 router.route('/exm')
     .get(isLoggedIn,example)
 router.route('/postFoodAvail')

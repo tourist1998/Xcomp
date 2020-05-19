@@ -1,3 +1,8 @@
+
+/////////////////////////LOG IN MGR /////////////////////////////////////////////////////////////////
+
+
+
 const bcrypt = require('bcryptjs');
 const jwt= require('jsonwebtoken');
 const User  = require('../model/usermodel.js');
@@ -20,7 +25,7 @@ exports.Signup = async (req,res,next) => {
         }
         const users = await User.create(user); 
         // console.log(users);
-        var token = await jwt.sign({id:users._id},'This should be tough to guess',{
+        var token = await jwt.sign({id:users._id},process.env.KEY,{
             expiresIn: "60d"
         })    
         res.cookie('jwt',token,{
@@ -32,9 +37,13 @@ exports.Signup = async (req,res,next) => {
         })
     }
     catch(e) {
-        res.status(404).send({
-            "Status" : "fail",
-            "message" : "This Email id already exist"
+        const err = new Error();
+        err.statusCode = err.statusCode || 404;
+        err.status = err.status || 'fail'
+        err.message = "This Email id already exist"   
+	    res.status(err.statusCode).json({
+		    Status : err.status,
+	    	Message : err.message
         });
     }
 }
@@ -54,7 +63,7 @@ exports.login = async(req,res,next) => {
         if (!user || !(await correctPassword(password, user.Password))) {
             return next('Incorrect email or password');
         }
-        const token = jwt.sign({id:user._id},'This should be tough to guess',{
+        const token = jwt.sign({id:user._id},process.env.KEY,{
             expiresIn: "60d"
         });
         res.cookie('jwt',token,{
@@ -94,11 +103,14 @@ exports.protect = async(req,res,next) => {
     if(!token) { 
         return next('fail');
     }
-    const decoded = await jwt.verify(token,"This should be tough to guess");
+    const decoded = await jwt.verify(token,process.env.KEY);
     // console.log(decoded); 
     if(!req.body.postedBy) {
         req.body.postedBy = decoded.id; 
     } 
+    if(!req.body.allotedTo) {
+        req.body.allotedTo = decoded.id;
+    }
     // Check if user still exist 
     const freshUser = await User.findById(decoded.id);
 

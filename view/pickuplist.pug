@@ -4,7 +4,7 @@ html
     style.
       body
       {
-      background-image: url('poverty.jpg');
+      background-image: url('street.jpg');
       background-size: cover;
       }
       table, th, td {
@@ -25,130 +25,27 @@ html
       }
   body
     h1(align='center')
-      | Location ULTADANGA you need to feed 
-      input(type='text', maxlength='4', size='4')
-      |  more people
     table(align='center', cellpading='10', cellspacing='10', border='1px')
-      tbody
+      tbody#avail
         tr
-          td(align='center') Donor
+          td(align='center') Need Id
           td(align='center') Address
-          td(align='center') Headcount
-          td(align='center') Select
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-    h1(align='center')
-      | Location SECTOR V you need to feed 
-      input(type='text', maxlength='4', size='4')
-      |  more people
-    table(align='center', cellpading='10', cellspacing='10', border='1px')
-      tbody
-        tr
-          td(align='center') Donor
-          td(align='center') Address
-          td(align='center') Headcount
-          td(align='center') Select
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-        tr
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='text')
-          td
-            input(type='button', onclick='decrementValue()', value='↓')
-            input#number(type='number')
-            input(type='button', onclick='incrementValue()', value='↑')
-    input(type='button', onclick='decrementValue()', value='↓')
-    input#number(type='number')
-    input(type='button', onclick='incrementValue()', value='↑')
-    script.
-      function incrementValue()
-      {
-      var value = parseInt(document.getElementById('number').value, 10);
-      value = isNaN(value) ? 0 : value;
-      value++;
-      document.getElementById('number').value = value;
-      }
-      function decrementValue()
-      {
-      var value = parseInt(document.getElementById('number').value, 10);
-      value = isNaN(value) ? 0 : value;
-      value--;
-      document.getElementById('number').value = value;
-      }
+          td(align='center') Food Available for
+          td(align='center') Donor Name
+          td(align='center') Donor Contact No
+          td(align='center') Food Type
+          td(align='center') Required
+        each val in list
+          tr
+            td(align='center') #{val._id}
+            td(align='center') #{val.postedBy.Address}
+            td(align='center') #{val.total_person_served}
+            td(align='center') #{val.postedBy.Name}
+            td(align='center') #{val.postedBy.Phone}
+            td(align='center') #{val.type_of_food}
+            td(align='center') 
+              input.input(type='text', placeholder='Need')
+    input.input(type='submit', value='SUBMIT', id = 'submit')
+    script(src='/js/Status.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+        

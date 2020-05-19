@@ -3,8 +3,6 @@
 
 
 
-
-
 const signup = async (Name,UserName,Email,Password,PasswordConfirm,Address,Type,DirectorPhone,DirectorName,Phone) => {
     
     try {

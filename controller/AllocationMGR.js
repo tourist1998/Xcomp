@@ -3,6 +3,8 @@ var ObjectId = require('mongodb').ObjectId;
 const Need = require('./../model/need.js');
 const User = require('./../model/usermodel');
 const Available = require('./../model/availability');
+const allocate = require('./../model/allocate.js');
+
 var loc = [];
 
 exports.groupByLocation = async (req,res,next) => {
@@ -30,6 +32,30 @@ exports.groupByLocation = async (req,res,next) => {
     }
 }
 
+exports.groupByFood = async (req,res,next) => {
+    try {
+        const data =await Available.aggregate([
+            {
+                $match : { location : { $eq : req.location  } } // Filtering them on basis of location  
+            },
+            {
+                $group : {
+                    _id : req.type_of_food // Groupong them on basis of food type 
+                }
+            }
+        ]);
+        res.status(201).json({
+            "Status" : "Success",
+            data
+        });
+    }
+    catch(err) {
+        res.status(404).json({
+            'Status' : 'fail',
+            'message' : err
+        });
+    }
+}
 exports.FoodNeedByNGO = async(req,res,next) => {
     // For given user we have collected Need of that user
     const need = await Need.find({'postedBy' : req.body.postedBy }); 
@@ -39,6 +65,7 @@ exports.FoodNeedByNGO = async(req,res,next) => {
         loc.push(need[i].location);
     }
     console.log(loc);
+    res.locals.loc = loc;
     // Now on basis of this location and type of food 
     next();
 }
@@ -52,21 +79,24 @@ function onlyUnique(value, index, self) {
 exports.GetDonorList = async (req,res,next) => {
     var unique = loc.filter(onlyUnique); // Get unique address 
 
-    var list = [];
+    const list = [];
     // Traverse unique array and send a array of object 
     for(var i=0;i<unique.length;i++) {
         const availabilityByLocation = await Available.find({'location' : unique[i]}); 
-        if(availabilityByLocation.length != 0) 
+        if(availabilityByLocation.length != 0) // To remove empty object from our list 
         list.push(availabilityByLocation);
     }
-    // console.log(list);
+    res.locals.list = list; // Now we can use this list object in all template
+    console.log(list);
     res.status(201).json({
         "Status" : "Success",
         list
     });
 
 }
-/* Output of this list that we have as array of array. Now on basis of this array we have 
+
+/*
+Output of this list that we have as array of array. Now on basis of this array  we have 
 to create our pickuplist page for a given user. 
 [
     [
@@ -89,7 +119,43 @@ to create our pickuplist page for a given user.
         __v: 0
       }
     ],
-    []
+    [] // We have removed this empty list 
+
   ]
 ]
 */
+
+exports.foodAllocatedToDonor = async (req,res,next) => {
+    try {
+        
+        var available,total_till;
+        // console.log(req.body);
+        var data1 = JSON.parse(req.body.json_data);
+        // console.log('start');
+        for(var i=0;i<data1.length;i++) {
+            data1[i].alloted = req.body.postedBy;
+            data1[i].Availabilityid = data1[i].id;
+            available = await allocate.create(data1[i]); 
+        }
+        for(var i=0;i<data1.length;i++) {
+            data1[i].total_person_served = Number(data1[i].total) -  Number(data1[i].total_person_served);
+            total_till = total_till + Number(data1[i].total_person_served);
+            available = await Available.findByIdAndUpdate(data1[i].id,data1[i],{
+                new: true,
+                runValidators : true
+            });
+        }
+
+        res.status(201).json({
+            'status' : 'success',
+            'message' : 'You allocation has been updated'  
+        });
+    }
+    catch(e) {
+        res.status(500).json({
+            'status' : 'fail',
+            'message' : 'Not able to allocate you food',
+        }); 
+    }
+
+}

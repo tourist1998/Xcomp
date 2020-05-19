@@ -7,4 +7,6 @@ const User = require('./../controller/UserController.js');
 router.route('/')
     .post(User.protect,Availability.Availablefood)
     .get(Availability.getAllAvailability)
+    .patch(Availability.updateAvailability)
+
 module.exports = router;

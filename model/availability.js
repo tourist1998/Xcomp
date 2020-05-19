@@ -24,7 +24,7 @@ const AvailabilitySchema = mongoose.Schema({
     }
 }) 
 
-AvailabilitySchema.pre('save',async function(next) {
+AvailabilitySchema.pre(/^find/,async function(next) {
     this.populate({
         path : 'postedBy'
     })
