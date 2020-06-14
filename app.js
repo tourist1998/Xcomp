@@ -20,6 +20,7 @@ const NeedRouter = require('./Router/Need.js');
 const AvailabilityRouter = require('./Router/Availability');
 const ViewController = require('./controller/ViewController.js');
 const Allocate = require('./Router/Allocate');
+const status = require('./Router/Status');
 // Database connection
 
 app.use(morgan('dev')); // tell us about our log 
@@ -45,7 +46,7 @@ app.use('/api/v1/Need',NeedRouter);
 app.use('/api/v1/Availability',AvailabilityRouter);
 app.use('/',ViewController);
 app.use('/api/v1/Allocate',Allocate); 
-
+app.use('/api/v1/status',status);
 app.all('*',(req,res,next) => {
   const err = new Error();
   err.statusCode = 404;
@@ -54,6 +55,7 @@ app.all('*',(req,res,next) => {
   next(err);
 })
 
+/*
 app.use((err,req,res,next) => { // Global error handling middleware. 
 	err.statusCode = err.statusCode || 500;
 	err.status = err.status || 'error'   
@@ -62,5 +64,5 @@ app.use((err,req,res,next) => { // Global error handling middleware.
 		Message : err.message
   });
 })
-
+*/
 module.exports = app; 

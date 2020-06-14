@@ -123,8 +123,8 @@ to create our pickuplist page for a given user.
 
   ]
 ]
-*/
 
+*/
 exports.foodAllocatedToDonor = async (req,res,next) => {
     try {
         
@@ -152,10 +152,27 @@ exports.foodAllocatedToDonor = async (req,res,next) => {
         });
     }
     catch(e) {
-        res.status(500).json({
+        res.status(201).json({
             'status' : 'fail',
             'message' : 'Not able to allocate you food',
         }); 
     }
 
+}
+  
+exports.RemoveAllocation = async (req,res,next) => {
+    try {
+        let Removing = JSON.parse(req.body);
+        console.log('ram');
+        res.status(201).json({
+            'status' : 'success',
+
+        });
+    }
+    catch(e) {
+        res.status(404).json({
+            'status' : 'fail',
+            'message' : 'Facing some error in Reallocating food'
+        });
+    }
 }
