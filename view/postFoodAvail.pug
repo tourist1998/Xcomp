@@ -37,9 +37,9 @@ html
   body
     .wrap
       h3(style='text-align: center')  POST FOOD AVAILABILITY
-      form#Avail
+      form(action='#', method='post', onsubmit='return validateform();')
         label(for='num', style='color:white; font-family: sans-serif') NUMBER OF PEOPLE YOU NEED TO FEED: 
-        input.input#NumofPeople(type='text')
+        input#head.input(type='text')
         br
         br
         label(for='area', style='color:white; font-family: sans-serif') LOCATION: 
@@ -70,9 +70,9 @@ html
         label(for='food', style='color:white; font-family: sans-serif') TYPE OF FOOD:
         select#food(name='food', style='background: transparent; color: white')
           option(value='Veg', style='background: transparent; color: darkslategray') Veg Food
-          option(value='Halal', style='background: transparent; color:darkslategray') Halal Food
-          option(value='No-Beef-Non-Veg', style='background: transparent; color: darkslategray') Non-Beef Non Veg Food
-          option(value='Anything', style='background: transparent; color:darkslategray') Anything
+          option(value='Haalal', style='background: transparent; color:darkslategray') Halal Food
+          option(value='Non', style='background: transparent; color: darkslategray') Non-Beef Non Veg Food
+          option(value='any', style='background: transparent; color:darkslategray') Anything
         br
         br
         label(for='pick', style='color:white; font-family: sans-serif') PICKUP TIME: 
@@ -81,8 +81,28 @@ html
         br
         br
         br
-        input.input(type='submit', value='SUBMIT' , href='/PostAvail')
+        input.input(type='submit', value='SUBMIT')
     form
       input.button(type='button', value='Go back!', onclick='history.back()', style='float: right;')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
     script(src='/js/postFoodAvail.js')
+    script.
+      function validateform()
+      {
+      var head=document.getElementById("head").value;
+      var e = parseInt(head);
+      if (e<1)
+      {
+      alert("Number of heads cannot be less than one");
+      return false;
+      }
+      else
+      {
+      if(e>250)
+      {
+      alert("Number of heads cannot be greater than 250");
+      return false;
+      }
+      return true;
+      }
+      }

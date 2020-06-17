@@ -55,13 +55,13 @@ html
       h2  Sign Up as an NGO
       form#NGO
         input.input(type='text', placeholder='Username', required='' , id='UserName' ) 
-        input.input(type='text', placeholder='Password', required='',id='Password')
-        input.input(type='text', placeholder='Password', required='',id='PasswordConfirm')
+        input.input(type='password', placeholder='Password', required='',id='Password')
+        input.input(type='password', placeholder='Confirm Password', required='',id='PasswordConfirm')
         input.input(type='text', placeholder="NGO Name", required='',id='Name')
-        input.input(type='text', placeholder='Phone Number', required='Phone Number' ,id='Phone')
+        input.input(type='tel', placeholder='Phone Number', required='Phone Number' ,id='Phone')
         input.input(type='text', placeholder="Director's Name", required='',id='DirectorName')
         input.input(type='text', placeholder="Director's Phone Number", required='',id='DirectorPhone')
-        input.input(type='text', placeholder='Email ID', required='',id='Email Id')
+        input.input(type='email', placeholder='Email ID', required='',id='Email Id')
         input.input(type='text', placeholder='Address', required='',id='Address')
         input.input(type='submit', value='Submit',id='Submit')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')

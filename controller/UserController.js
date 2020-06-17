@@ -23,6 +23,12 @@ exports.Signup = async (req,res,next) => {
             "DirectorName" : req.body.DirectorName,
             "DirectorPhone" : req.body.DirectorPhone
         }
+        var user2 = await User.find();
+        for(var i=0;i<user2.length;i++) {
+            if(user2[i].UserName == req.body.UserName || user[i].DirectorPhone == req.body.DirectorPhone || user[i].Email == req.body.Email) {
+                return next('There is some issue in our project');
+            } 
+        }
         const users = await User.create(user); 
         // console.log(users);
         var token = await jwt.sign({id:users._id},process.env.KEY,{

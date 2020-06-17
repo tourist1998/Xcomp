@@ -6,7 +6,7 @@ const Available = require('./../model/availability');
 const allocate = require('./../model/allocate.js');
 
 var loc = [];
-
+var type2; 
 exports.groupByLocation = async (req,res,next) => {
     try {
         const data =await Available.aggregate([
@@ -60,12 +60,15 @@ exports.FoodNeedByNGO = async(req,res,next) => {
     // For given user we have collected Need of that user
     const need = await Need.find({'postedBy' : req.body.postedBy }); 
     console.log(need);
+
     // Now we only need location were he wanted to serve. 
     for(var i=0;i<need.length;i++) {
         loc.push(need[i].location);
     }
     console.log(loc);
-    res.locals.loc = loc;
+    res.locals.loc = loc; 
+    type2 = req.body.type_of_food;
+    console.log(type2);
     // Now on basis of this location and type of food 
     next();
 }
@@ -82,7 +85,7 @@ exports.GetDonorList = async (req,res,next) => {
     const list = [];
     // Traverse unique array and send a array of object 
     for(var i=0;i<unique.length;i++) {
-        const availabilityByLocation = await Available.find({'location' : unique[i]}); 
+        const availabilityByLocation = await Available.find({'location' : unique[i],'type_of_food' : type2 }); 
         if(availabilityByLocation.length != 0) // To remove empty object from our list 
         list.push(availabilityByLocation);
     }
