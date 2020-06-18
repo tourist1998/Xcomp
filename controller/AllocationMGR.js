@@ -85,6 +85,7 @@ exports.GetDonorList = async (req,res,next) => {
     const list = [];
     // Traverse unique array and send a array of object 
     for(var i=0;i<unique.length;i++) {
+        // Bug 14 Food type matching issue  
         const availabilityByLocation = await Available.find({'location' : unique[i],'type_of_food' : type2 }); 
         if(availabilityByLocation.length != 0) // To remove empty object from our list 
         list.push(availabilityByLocation);
