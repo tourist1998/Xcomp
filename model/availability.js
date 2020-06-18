@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const AvailabilitySchema = mongoose.Schema({
     total_person_served : {
         type : Number,
-        Required : [true,'Total person to be served must be in list']
+        Required : [true,'Total person to be served must be in list'],
+        maxvalue : 250
     },
     type_of_food : {
         type : String,

@@ -21,6 +21,10 @@ const UserSchema = mongoose.Schema({
         required : [true,'A user must need a name to contact'],
         validate : {
             validator: function(el)  {
+                for(var i=0;i<el.length();i++) {
+                    if(el[i]>='0'&&el[i]<='9') continue;
+                    else return false;
+                }
                 return el.length === 10 && el[0]!='0' // Check wether phone is of 10 length
             }
         }
@@ -29,6 +33,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please provide a password'],
         minlength: 8 , // Password should be atleast of length 8
+        maxlength:12,
         select : 'false'
     },
     PasswordConfirm: {
@@ -59,10 +64,19 @@ const UserSchema = mongoose.Schema({
         type : String
     },
     DirectorName : {
-        type : String
+        type : String,
     },
     DirectorPhone : {
-        type : String
+        type : String,
+        validate: {
+            validator() {
+                for(var i=0;i<el.length();i++) {
+                    if(el[i]>='0'&&el[i]<='9') continue;
+                    else return false;
+                }
+                return el.length === 10 && el[0]!='0'
+            } 
+        }
     },
     passwordChangedAt: Date,
     passwordResetToken: String,

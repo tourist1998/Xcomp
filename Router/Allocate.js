@@ -8,4 +8,5 @@ const User = require('./../controller/UserController');
 router.route('/')
     .get(User.protect,AllocationMGR.FoodNeedByNGO,AllocationMGR.GetDonorList)
     .post(User.protect,AllocationMGR.foodAllocatedToDonor)
+    
 module.exports = router;

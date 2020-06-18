@@ -6,7 +6,7 @@ const Available = require('./../model/availability');
 const allocate = require('./../model/allocate.js');
 
 var loc = [];
-var type2; 
+
 exports.groupByLocation = async (req,res,next) => {
     try {
         const data =await Available.aggregate([
@@ -60,15 +60,12 @@ exports.FoodNeedByNGO = async(req,res,next) => {
     // For given user we have collected Need of that user
     const need = await Need.find({'postedBy' : req.body.postedBy }); 
     console.log(need);
-
     // Now we only need location were he wanted to serve. 
     for(var i=0;i<need.length;i++) {
         loc.push(need[i].location);
     }
     console.log(loc);
-    res.locals.loc = loc; 
-    type2 = req.body.type_of_food;
-    console.log(type2);
+    res.locals.loc = loc;
     // Now on basis of this location and type of food 
     next();
 }
@@ -85,9 +82,7 @@ exports.GetDonorList = async (req,res,next) => {
     const list = [];
     // Traverse unique array and send a array of object 
     for(var i=0;i<unique.length;i++) {
-        // Bug 14 Food type matching issue  
-        const availabilityByLocation = await Available.find({'location' : unique[i],'type_of_food' : type2 }); 
-        // Bug 14.1 Pick up list issue 
+        const availabilityByLocation = await Available.find({'location' : unique[i]}); 
         if(availabilityByLocation.length != 0) // To remove empty object from our list 
         list.push(availabilityByLocation);
     }
@@ -128,8 +123,8 @@ to create our pickuplist page for a given user.
 
   ]
 ]
-
 */
+
 exports.foodAllocatedToDonor = async (req,res,next) => {
     try {
         
@@ -157,27 +152,10 @@ exports.foodAllocatedToDonor = async (req,res,next) => {
         });
     }
     catch(e) {
-        res.status(201).json({
+        res.status(500).json({
             'status' : 'fail',
             'message' : 'Not able to allocate you food',
         }); 
     }
 
-}
-  
-exports.RemoveAllocation = async (req,res,next) => {
-    try {
-        let Removing = JSON.parse(req.body);
-        console.log('ram');
-        res.status(201).json({
-            'status' : 'success',
-
-        });
-    }
-    catch(e) {
-        res.status(404).json({
-            'status' : 'fail',
-            'message' : 'Facing some error in Reallocating food'
-        });
-    }
 }

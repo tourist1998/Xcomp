@@ -1,211 +1,96 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title> NGO Registration Form</title>    
- <style>
-     body{
-         background: url(poverty-child-ap.jpg);
-         background-size: cover;
-         font-family: sans-serif;
-     }
-     
-     .wrap{
-         max-width: 350px;
-         border-radius: 20px;
-         margin:auto;
-         background: rgba(0,0,0,0.8);
-         box-sizing: border-box;
-         padding: 40px;
-         color:#fff;
-         margin-top: 100px;
-     }
-     input[type=text],input[type=password]{
-         width:100%;
-         box-sizing: border-box;
-         padding: 12px 5px;
-         background: rgba(0,0,0,0.10);
-         outline: none;
-         border: none;
-         border-bottom: 1px dotted #fff;
-         color: #fff;
-         border-radius: 5px;
-         margin: 5px;
-         font-weight: bold;
-             
-     }
-     input[type=submit]{
-         width:100%;
-         box-sizing: border-box;
-         padding: 10px 0;
-         margin-top: 30px;
-         outline: none;
-         border: none;
-         background: #60adde;
-         border-radius: 20px;
-         font-size: 20px;
-         color: #fff;
-         border-bottom: 1px dotted #fff;
-         color: #fff;
-         border-radius: 10px;
-         margin: 5px;
-         font-weight: bold;
-     }
-</style>      
-</head>    
-<body>    
-<div class="wrap">
-    <h3> Sign Up as a Food Donor</h3>
-   <form action="#" method="post" onsubmit="return validateform();" > 
-        <input type="text" class="input" placeholder="Username" required id="USERNAME">
-        <input type="password" class="input" placeholder="Password" required id="PASSWORD">
-        <input type="text" class="input" placeholder="NGO's Name" required id="NGONAME">
-        <input type="text" class="input" placeholder="Phone Number" required id="PHONENUMBER">
-        <input type="text" class="input" placeholder="Director's Name" required id="DIRECTORSNAME">
-        <input type="text" class="input" placeholder="Director's Phone Number" required id="DIRECTORSPHONENUMBER">
-        <input type="text" class="input" placeholder="Email ID" required id="EMAILID">
-        <input type="text" class="input" placeholder="Address" required id="ADDRESS">
-        <p style="color:white; font-family: sans-serif">Type of Food</p>
-      <select id="food" name="food" style="background: transparent; color: white">
-        <option value="Veg" style="background: transparent; color: darkslategray">Veg Food</option>
-        <option value="Haalal" style="background: transparent; color:darkslategray">Halal Food</option>
-        <option value="Non" style="background: transparent; color: darkslategray">Non-Beef Non Veg Food</option>
-        <option value="any" style="background: transparent; color:darkslategray">Anything</option>
-        </select>
-        <p style="color:white; font-family: sans-serif">Area of Service</p>
-      <select id="area" name="area" style="background: transparent; color: white">
-        <option value="ulta" style="background: transparent; color: darkslategray">Ultadanga</option>
-        <option value="kgp" style="background: transparent; color: darkslategray">Kharagpur</option>
-        <option value="bel" style="background: transparent; color: darkslategray">Belgharia</option>
-        <option value="how" style="background: transparent; color: darkslategray">Howrah</option>
-          <option value="garia" style="background: transparent; color: darkslategray">Garia</option>
-          <option value="dhak" style="background: transparent; color: darkslategray">Dhakuria</option>
-          <option value="diam" style="background: transparent; color: darkslategray">Diamond Harbour</option>
-          <option value="khardah" style="background: transparent; color: darkslategray">Khardah</option>
-          <option value="bkp" style="background: transparent; color: darkslategray">Barrackpore</option>
-          <option value="sdp" style="background: transparent; color: darkslategray">Sodepur</option>
-          <option value="bars" style="background: transparent; color: darkslategray">Barasat</option>
-          <option value="rana" style="background: transparent; color: darkslategray">Ranaghat</option>
-          <option value="sera" style="background: transparent; color: darkslategray">Serampore</option>
-          <option value="chan" style="background: transparent; color: darkslategray">Chandannagar</option>
-          <option value="kris" style="background: transparent; color: darkslategray">Krishnanagar</option>
-          <option value="brn" style="background: transparent; color: darkslategray">Baranagar</option>
-          <option value="rgj" style="background: transparent; color: darkslategray">Raiganj</option>
-          <option value="newt" style="background: transparent; color: darkslategray">New Town</option>
-          <option value="balu" style="background: transparent; color: darkslategray">Balurghat</option>
-          <option value="hld" style="background: transparent; color: darkslategray">Haldia</option>
-          <option value="kln" style="background: transparent; color: darkslategray">Kalyani</option>  
-        </select>
-        <br>
-        <br>
-        <input type="submit" class="input" value="Submit">
-        
-    </form>
-</div>       
-</body>
-<script>
-function passid_validation(passid,mx,my)
-{
-var passid_len = passid.length;
-if (passid_len == 0 ||passid_len >= my || passid_len < mx)
-{
-alert("Password should not be empty / length be between "+mx+" to "+my);
-return false;
-}
-return true;
-}
-function allLetter(uname)
-{ 
-var letters = /^[A-Za-z]+$/;
-if(uname.match(letters))
-{
-return true;
-}
-else
-{
-alert('Username must have alphabet characters only');
-return false;
-}
-}
-function alphanumeric(uadd)
-{ 
-var letters = /^[0-9a-zA-Z]+$/;
-if(uadd.match(letters))
-{
-return true;
-}
-else
-{
-alert('User address must have alphanumeric characters only');
-return false;
-}
-}
-function ValidateEmail(uemail)
-{
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-if(uemail.match(mailformat))
-{
-return true;
-}
-else
-{
-alert("You have entered an invalid email address!");
-return false;
-}
-}
-function Validatephone(uphone)
-{
-var regx=/^[7-9]\d{9}$/;
-if(uphone.match(regx))
-{
-return true;
-}
-else
-{
-alert("You have entered an invalid phone number");
-return false;
-}
-}  
-function validateform()
-{  
-var uid=document.getElementById("USERNAME").value;
-var passid=document.getElementById("PASSWORD").value;
-var uname=document.getElementById("NGONAME").value;
-var phone1=document.getElementById("PHONENUMBER").value; 
-var vname=document.getElementById("DIRECTORSNAME").value; 
-var phone2=document.getElementById("DIRECTORSPHONENUMBER").value; 
-var uemail=document.getElementById("EMAILID").value;
-var uadd=document.getElementById("ADDRESS").value;
-if(passid_validation(passid,7,12)==false)
-{
-return false;
-}
-if(allLetter(uname)==false)
-{
-return false;
-}
-if(alphanumeric(uadd)==false)
-{ 
-return false;
-}
-if(allLetter(vname)==false)
-{
-return false;
-}
-if(Validatephone(phone1)==false)
-{
-return false;
-}
-if(ValidateEmail(uemail)==false)
-{
-return false;
-}
-if(Validatephone(phone2)==false)
-{
-return false;
-}
-return true;
-}
-</script>
-</html>
+doctype html
+html
+  head
+    title  NGO Registration Form
+    style.
+      body{
+      background: url(poverty-child-ap.jpg);
+      background-size: cover;
+      font-family: sans-serif;
+      }
+      .wrap{
+      max-width: 350px;
+      border-radius: 20px;
+      margin:auto;
+      background: rgba(0,0,0,0.8);
+      box-sizing: border-box;
+      padding: 40px;
+      color:#fff;
+      margin-top: 100px;
+      }
+      input[type=text],input[type=password]{
+      width:100%;
+      box-sizing: border-box;
+      padding: 12px 5px;
+      background: rgba(0,0,0,0.10);
+      outline: none;
+      border: none;
+      border-bottom: 1px dotted #fff;
+      color: #fff;
+      border-radius: 5px;
+      margin: 5px;
+      font-weight: bold;
+      }
+      input[type=submit]{
+      width:100%;
+      box-sizing: border-box;
+      padding: 10px 0;
+      margin-top: 30px;
+      outline: none;
+      border: none;
+      background: #60adde;
+      border-radius: 20px;
+      font-size: 20px;
+      color: #fff;
+      border-bottom: 1px dotted #fff;
+      color: #fff;
+      border-radius: 10px;
+      margin: 5px;
+      font-weight: bold;
+      }
+  body
+    h6 Password should be greater than equal to  8 but less than 12 
+    .wrap
+      h3  Sign Up as a Food Donor
+      form.Donor#Donor
+        input.input(type='text', placeholder='Username', id='Username', required='')
+        input.input(type='text', placeholder='Password', id='Password' ,required='')
+        input.input(type='text', placeholder='Confirm Password', id='Confirm Password' ,required='')
+        input.input(type='text', placeholder="Donor Name", id='Donor Name' , required='')
+        input.input(type='text', placeholder='Phone Number', id ='Phone Number' required='')
+        input.input(type='text', placeholder='Email ID', id ='Email Id', required='')
+        input.input(type='text', placeholder='Address', id ='Address', required='')
+        p(style='color:white; font-family: sans-serif') Type of Food
+        select#food(name='food', style='background: transparent; color: white')
+          option(value='Veg Food', style='background: transparent; color: darkslategray') Veg Food
+          option(value='Halal Food', style='background: transparent; color:darkslategray') Halal Food
+          option(value='Non-Beef Non Veg Food', style='background: transparent; color: darkslategray') Non-Beef Non Veg Food
+          option(value='Anything', style='background: transparent; color:darkslategray') Anything
+        p(style='color:white; font-family: sans-serif') Area of Service
+        select#area(name='area', style='background: transparent; color: white')
+          option(value='Ultadanga', style='background: transparent; color: darkslategray') Ultadanga
+          option(value='Kharagpur', style='background: transparent; color: darkslategray') Kharagpur
+          option(value='Belgharia', style='background: transparent; color: darkslategray') Belgharia
+          option(value='Howrah', style='background: transparent; color: darkslategray') Howrah
+          option(value='garia', style='background: transparent; color: darkslategray') Garia
+          option(value='Garia', style='background: transparent; color: darkslategray') Dhakuria
+          option(value='Diamond Harbour', style='background: transparent; color: darkslategray') Diamond Harbour
+          option(value='khardah', style='background: transparent; color: darkslategray') Khardah
+          option(value='Barrackpore', style='background: transparent; color: darkslategray') Barrackpore
+          option(value='Sodepur', style='background: transparent; color: darkslategray') Sodepur
+          option(value='Barasat', style='background: transparent; color: darkslategray') Barasat
+          option(value='Ranaghat', style='background: transparent; color: darkslategray') Ranaghat
+          option(value='Serampore', style='background: transparent; color: darkslategray') Serampore
+          option(value='Chandannagar', style='background: transparent; color: darkslategray') Chandannagar
+          option(value='Krishnanagar', style='background: transparent; color: darkslategray') Krishnanagar
+          option(value='Baranagar', style='background: transparent; color: darkslategray') Baranagar
+          option(value='Raiganj', style='background: transparent; color: darkslategray') Raiganj
+          option(value='New Town', style='background: transparent; color: darkslategray') New Town
+          option(value='Balurghat', style='background: transparent; color: darkslategray') Balurghat
+          option(value='Haldia', style='background: transparent; color: darkslategray') Haldia
+          option(value='Kalyani', style='background: transparent; color: darkslategray') Kalyani
+        br
+        br
+        input.input(type='submit', value='Submit' )
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
     script(src='/js/Donorsignup.js')

@@ -8,9 +8,9 @@ const allocate = async function(jsonallocated) {
 
         const res = await axios({
             method: 'post',
-            url: 'http://localhost:3000/api/v1/status',
+            url: 'http://localhost:3000/api/v1/Allocate',
             data : {
-                json_data : jsonallocated 
+                json_data : jsonallocated // to pass array of object we should convert it to string and then parse to get back original form 
             }
         });
         if(res.data.status === 'success')  {
@@ -21,14 +21,13 @@ const allocate = async function(jsonallocated) {
         }
     }
     catch(err) {
-       // console.log(err.response.data);
+        // console.log(err.response.data);
         alert('Facing some error in allocating you this food');
         window.setTimeout(()=> {
-            // location.assign('/')
+            location.assign('/')
         },1500);
     }
 }
-
 
 document.querySelector('#submit').addEventListener('click', function(e)  {
     e.preventDefault();
@@ -48,6 +47,8 @@ document.querySelector('#submit').addEventListener('click', function(e)  {
         } 
         
     }
-    var jsonallocated = JSON.stringify(allocated);
-    allocate(jsonallocated);
+   // console.log(allocated);
+    // window.allocated = allocated; // This object has global scope now save this object to database.
+    // var jsonallocated = JSON.stringify(allocated);
+    // allocate(jsonallocated);
 })

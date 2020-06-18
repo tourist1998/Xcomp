@@ -1,5 +1,2 @@
 node_modules/ 
 config.env/
-gpg signing github/
-
-# Wild card enteries are also allowed here like *.js // ignore all file ending with .js

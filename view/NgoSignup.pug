@@ -1,6 +1,6 @@
-doctype html
 html
   head
+  body
     title  NGO Registration Form
     style.
       body{
@@ -51,19 +51,22 @@ html
       margin: 5px;
       font-weight: bold;
       }
-  body
     .wrap
       h2  Sign Up as an NGO
-      form(action='#', method='post', onsubmit='return validateform();')
-        input#USERNAME.input(type='text', placeholder='Username', required='')
-        input#PASSWORD.input(type='password', placeholder='Password', required='')
-        input#NGONAME.input(type='text', placeholder="NGO's Name", required='')
-        input#PHONENUMBER.input(type='text', placeholder='Phone Number', required='')
-        input#DIRECTORSNAME.input(type='text', placeholder="Director's Name", required='')
-        input#DIRECTORSPHONENUMBER.input(type='text', placeholder="Director's Phone Number", required='')
-        input#EMAILID.input(type='text', placeholder='Email ID', required='')
-        input#ADDRESS.input(type='text', placeholder='Address', required='')
-        input.input(type='submit', value='Submit')
+      h6 Password should be greater than equal to  8 but less than 12 
+      form#NGO(action='#', method='post', onsubmit='return validateform();')
+        input.input(type='text', placeholder='Username', required='' , id='UserName' ) 
+        input.input(type='text', placeholder='Password', required='',id='Password')
+        input.input(type='text', placeholder='Password', required='',id='PasswordConfirm')
+        input.input(type='text', placeholder="NGO Name", required='',id='Name')
+        input.input(type='text', placeholder='Phone Number', required='Phone Number' ,id='Phone')
+        input.input(type='text', placeholder="Director's Name", required='',id='DirectorName')
+        input.input(type='text', placeholder="Director's Phone Number", required='',id='DirectorPhone')
+        input.input(type='text', placeholder='Email ID', required='',id='Email Id')
+        input.input(type='text', placeholder='Address', required='',id='Address')
+        input.input(type='submit', value='Submit',id='Submit')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+    script(src='/js/NGOsignup.js')
     script.
       function passid_validation(passid,mx,my)
       {
@@ -88,22 +91,9 @@ html
       return false;
       }
       }
-      function alphanumeric(uadd)
-      {
-      var letters = /^[0-9a-zA-Z]+$/;
-      if(uadd.match(letters))
-      {
-      return true;
-      }
-      else
-      {
-      alert('User address must have alphanumeric characters only');
-      return false;
-      }
-      }
       function ValidateEmail(uemail)
       {
-      var mailformat = /^\\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      var mailformat = /\S+@\S+\.\S+/;
       if(uemail.match(mailformat))
       {
       return true;
@@ -116,7 +106,7 @@ html
       }
       function Validatephone(uphone)
       {
-      var regx=/^[7-9]\\d{9}$/;
+      var regx=/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/;
       if(uphone.match(regx))
       {
       return true;
@@ -127,42 +117,37 @@ html
       return false;
       }
       }
-      // Email validation 
       function validateform()
       {
-      var uid=document.getElementById("USERNAME").value;
-      var passid=document.getElementById("PASSWORD").value;
-      var uname=document.getElementById("NGONAME").value;
-      var phone1=document.getElementById("PHONENUMBER").value;
-      var vname=document.getElementById("DIRECTORSNAME").value;
-      var phone2=document.getElementById("DIRECTORSPHONENUMBER").value;
-      var uemail=document.getElementById("EMAILID").value;
-      var uadd=document.getElementById("ADDRESS").value;
-      if(passid_validation(passid,7,12)==false)
+      var username = document.getElementById('UserName').value; 
+      var pass = document.getElementById('Password').value;
+      var confirmpass = document.getElementById('PasswordConfirm').value;
+      var name = document.getElementById('Name').value;
+      var phone = document.getElementById('Phone').value;
+      var dirname = document.getElementById('DirectorName').value;
+      var dirphone = document.getElementById('DirectorPhone').value;
+      var email = document.getElementById('Email Id').value;
+      if(passid_validation(pass,7,12)==false)
       {
       return false;
       }
-      if(allLetter(uname)==false)
+      if(allLetter(name)==false)
       {
       return false;
       }
-      if(alphanumeric(uadd)==false)
+      if(allLetter(dirname)==false)
       {
       return false;
       }
-      if(allLetter(vname)==false)
+      if(Validatephone(phone)==false)
       {
       return false;
       }
-      if(Validatephone(phone1)==false)
+      if(ValidateEmail(email)==false)
       {
       return false;
       }
-      if(ValidateEmail(uemail)==false)
-      {
-      return false;
-      }
-      if(Validatephone(phone2)==false)
+      if(Validatephone(dirphone)==false)
       {
       return false;
       }
