@@ -23,6 +23,8 @@ exports.Signup = async (req,res,next) => {
             "DirectorName" : req.body.DirectorName,
             "DirectorPhone" : req.body.DirectorPhone
         }
+
+        // 13  Phone Number issue
         var user2 = await User.find();
         for(var i=0;i<user2.length;i++) {
             if(user2[i].UserName == req.body.UserName || user[i].DirectorPhone == req.body.DirectorPhone || user[i].Email == req.body.Email) {

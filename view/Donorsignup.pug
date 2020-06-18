@@ -57,7 +57,8 @@ html
         input.input(type='text', placeholder='Confirm Password', id='Confirm Password' ,required='')
         input.input(type='text', placeholder="Donor Name", id='Donor Name' , required='')
         input.input(type='text', placeholder='Phone Number', id ='Phone Number' required='')
-        input.input(type='text', placeholder='Email ID', id ='Email Id', required='')
+        //  Changed type to email ( Bug 9.4 Email issue) 
+        input.input(type='email', placeholder='Email ID', id ='Email Id', required='')
         input.input(type='text', placeholder='Address', id ='Address', required='')
         p(style='color:white; font-family: sans-serif') Type of Food
         select#food(name='food', style='background: transparent; color: white')
