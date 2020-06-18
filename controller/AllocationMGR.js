@@ -87,6 +87,7 @@ exports.GetDonorList = async (req,res,next) => {
     for(var i=0;i<unique.length;i++) {
         // Bug 14 Food type matching issue  
         const availabilityByLocation = await Available.find({'location' : unique[i],'type_of_food' : type2 }); 
+        // Bug 14.1 Pick up list issue 
         if(availabilityByLocation.length != 0) // To remove empty object from our list 
         list.push(availabilityByLocation);
     }
