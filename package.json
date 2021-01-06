@@ -14,7 +14,7 @@
   "author": "Satya shivam",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
